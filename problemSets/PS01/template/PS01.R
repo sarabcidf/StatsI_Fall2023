@@ -1,7 +1,7 @@
 #### Options & libraries ####
 
 rm(list=ls()) # Making sure the environment is empty when starting new script
-setwd("/Users/sarabcidf/Desktop/ASDS/Statistics/Problem sets") # Setting wd for the PS
+setwd("/Users/sarabcidf/Desktop/ASDS/Statistics/GitRep/problemSets/PS01/template") # Setting wd for the PS
 
 library (tidyverse) # I will be using tidyverse which I already know :) 
 library (ggplot2) # I will also be using ggplot for the last task of Question 2
@@ -63,7 +63,7 @@ confint95 <- c(lower_95, upper_95)
 # I see that the function is t.test, and that I must specify mu = 100 and
 # Alternative = gretaer, following the problem and the test I wish to carry out
 
-test <- t.test(y, mu = 100, alternative = "greater") 
+test <- t.test(y, mu = 100, alternative = "greater")
 test
 
 #### Question 2 ####
