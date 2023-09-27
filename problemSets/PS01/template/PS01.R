@@ -1,67 +1,86 @@
 #### Options & libraries ####
 
 rm(list=ls()) # Making sure the environment is empty when starting new script
-setwd("/Users/sarabcidf/Desktop/ASDS/Statistics/GitRep/problemSets/PS01/template") # Setting wd for the PS
+setwd("/Users/sarabcidf/Desktop/ASDS/Statistics/GitRep/problemSets/PS01/my_answers") # Setting wd for the PS
 
-library (tidyverse) # I will be using tidyverse which I already know :) 
-library (ggplot2) # I will also be using ggplot for the last task of Question 2
+library (tidyverse) # I might be using tidyverse
+library (ggplot2) # I might be using ggplot for the last task of Question 2
+library(knitr) # I will use this to insert chunks of code into my latex doc 
 
 #### Question 1 ####
 
-# 1. Calculating the CI: #
+# Exercise 1. Calculating the CI: #
 
-y <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98) # Copying vector of IQs ; n = 25
+y <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98) # Copying vector with sample of IQs
+length(y) # n = 25
 
-# Calculating mean and sd
+# For the IC, since we don't know the SD for the population, plus n < 30,
+# We must do a T test instead of a Z test
+# I see here that we can use qt instead of qnorm:
+# https://www.statology.org/working-with-the-student-t-distribution-in-r-dt-qt-pt-rt/
 
-meany <- mean(y) # Sample mean of 98.44
-sdy <- sd(y) # Sample sd of 13.09
+# T statistic = (sample mean - pop mean) / (s/sqrt(n))
+# CI : - T(n-1, alpha/2) <= T stat <= T(n-1, alpha/2)
+# Solving for pop mean, the CI is: 
+# [Sample mean - T(n-1, alpha/2)(s/sqrt(n)) , sample mean + T(n-1, alpha/2)(s/sqrt(n))]
+# Making all the calculations: 
 
-# I think we must assume that IQs are normally distributed, and we do not know 
-# the mean or the sd for the population 
-# (like Setting 2 here: http://www.stat.ucla.edu/~rgould/110as02/bsci). 
+meany <- mean(y) # I see there is a sample mean of 98.44
+sdy <- sd(y) # I see there is a sample sd of 13.09
+sqrtn <- sqrt(25) # I calculate the sqrt of the sample size, which is = 5
+alpha = 1-0.9 
 
-# Since we do not know sd for the population, we need a t test instead of a z test
+# MI DUDA ES POR QUE PONGO ALPHA / 2 EN LUGAR DE .9 / 2... SE VOLTEAN LOS SIGNOS DEL INTERVALO SUPERIOR E INFERIOR.... Tanto Normal como T son simetricas... O por que ponemos lower.tail = F
 
-# If 90% CI, alpha = 0.10
-# So xbar +- t(alpha/2, df) * s/sqrt(n)
-# alpha/2 = .05 and 1-.05 = 0.5
-# df = n-1 = 25-1 = 24
+t90 <- qt(alpha/2,24,lower.tail = F) # Critical value T(n-1, alpha/2)
+t90
 
-sqrtn <- sqrt(25)
+T90 <- t90*sdy/sqrtn # T90 * (s/sqrt(n)). This I add and substract from sample mean
+T90
 
-me <- qt(.95,24) * sdy/sqrtn
-me
-
-lower_90 <- meany - me
-upper_90 <- meany + me 
+lower_90 <- meany - T90
+upper_90 <- meany + T90 
 
 confint_90 <- c(lower_90, upper_90)
-confint_90 # meanschool falls somewhere between these 
+confint_90 # Mean of school falls somewhere between these values ! 
 
-# QUESTIONS # 
+# Confirming with t.test()
 
-# From the slides (but we cannot use z because n < 30 
-# and because we do not know sd ?)
-# What does the n < 30 have to do with the choice between T or Z ? 
+test2 <- t.test(y,conf.level = .90)
+test2 # The IC is identical
 
-lower_95 <- sample_mean - (z95 * (sample_sd/sqrt(n))) 
-upper_95 <- sample_mean + (z95 * (sample_sd/sqrt(n)))
-confint95 <- c(lower_95, upper_95)
+# I would also like to see what happens if I use qnorm instead of qt for a n = 25
 
+z90 <- qnorm(alpha/2,lower.tail = F)
+lower_90_b <- meany - (z90 * (sdy/sqrtn)) 
+upper_90_b <- meany + (z90 * (sdy/sqrtn))
+confint90_b <- c(lower_90_b, upper_90_b)
+confint90_b # It does change quite a bit using qnorm ... 
 
-
-# 2. Seeing if AvgIQSchool > 100 (testing hypothesis)
+# Exercise 2. Seeing if AvgIQSchool > 100 (testing hypothesis) # 
 
 # I want to test if meanschool is > 100
-# Null Hyp : meanschool <= 100 ; 
-# Alt Hyp : meanschool > 100 
+# Null Hyp (H0) : meanschool <= 100 ; 
+# Alt Hyp (Ha) : meanschool > 100 
 # All the assumptions from the CI apply and I use a T test
 # alpa = 0.05, Conf level = 95
 
-# From here https://data-flair.training/blogs/hypothesis-testing-in-r/
-# I see that the function is t.test, and that I must specify mu = 100 and
-# Alternative = gretaer, following the problem and the test I wish to carry out
+alpha2 <- 0.05
+
+# If T > T(n-1, alpha), I may reject H0 at the 95 confidence level
+
+t95 <- qt(alpha2,24,lower.tail = F) # I am looking in the upper tail 
+t95 # Critical value of -1.71 (if T => -1.71, I may reject H0)
+
+T95 <- (meany - 100)/(sdy/sqrtn)
+T95 # T is NOT greater than -1.71, so I may not reject the H0 that mean school <= 100 at the 95 confidence level 
+
+# Calculating the P Value
+
+p_val <- pt(abs(T95),df = 24, lower.tail = T)
+p_val
+
+# To confirm with t.test(), from here https://data-flair.training/blogs/hypothesis-testing-in-r/ I see that I must specify mu = 100 and alternative = greater, given my H0 & Ha
 
 test <- t.test(y, mu = 100, alternative = "greater")
 test
@@ -73,28 +92,49 @@ expenditure <- read.table("https://raw.githubusercontent.com/ASDS-TCD/StatsI_Fal
 head(expenditure)
 summary(expenditure)
 
-# 1. Initial plots #
+# Exercise 1. Initial plots
 
-plot_YX1 <- plot(expenditure$X1,expenditure$Y)
-plot_YX1
+plot_X1Y <- plot(expenditure$X1,expenditure$Y)
+plot_X1Y
 
-plot_YX2 <- plot(expenditure$X2,expenditure$Y)
-plot_YX2
+plot_X2Y <- plot(expenditure$X2,expenditure$Y)
+plot_X2Y
 
-plot_YX3 <- plot(expenditure$X3,expenditure$Y)
-plot_YX3
+plot_X3Y <- plot(expenditure$X3,expenditure$Y)
+plot_X3Y
 
-# 2. Region plot #
+plot_X1X2 <- plot(expenditure$X1,expenditure$X2)
+plot_X1X2
+
+plot_X1X3 <- plot(expenditure$X1,expenditure$X3)
+plot_X1X3
+
+plot_X2X3 <- plot(expenditure$X2,expenditure$X3)
+plot_X2X3
+
+# Exercise 2. Region plot #
 
 plot_Reg <- plot(expenditure$Region,expenditure$Y)
 plot_Reg
 
-# Confirming 
+# Exercise Confirming 
 
 reg_highest_exp <- expenditure %>% group_by(Region) %>% summarise(MeanExp = mean(Y)) # Region 4 has the highest
 
 # 3. X1 and Y, by Region #
 
-## AQUI ME QUEDE ## ****************************
+plotX1Y_Reg <- plot(expenditure$X1,expenditure$Y,
+                    col = factor(expenditure$Region),
+                    pch = factor(expenditure$Region)) # Does not work
+
+# I could not find how to make the base R scatteplot work to give different dot shapes to different regions, so I will plot it with ggplot: 
+
+plotX1Y_Reg <- ggplot(expenditure,aes(x = X1, y = Y, shape = factor(Region), colour = factor(Region))) +
+  geom_point()
+plotX1Y_Reg
+
+# I already knew ggplot well, however I did consult the following sources to remember exactly which arguments I needed to make the plot do what I wanted it to do: 
+# https://r-graphics.org/recipe-colors-setting (different colors)
+# https://r-graphics.org/recipe-scatter-shapes (different point shapes)
 
 
