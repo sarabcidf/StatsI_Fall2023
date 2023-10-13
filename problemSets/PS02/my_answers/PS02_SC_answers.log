@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  13 OCT 2023 09:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  13 OCT 2023 14:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -939,13 +939,13 @@ Overfull \hbox (46.97836pt too wide) in paragraph at lines 161--162
  [][] 
  []
 
-[6 <./women_desc.png>] (./PS02_SC_Answers.R) [7] (./PS02_SC_answers.aux)
+[6 <./women_desc.png>] (./PS02_SC_Answers.R) [7] [8] (./PS02_SC_answers.aux)
 Package rerunfilecheck Info: File `PS02_SC_answers.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27143 strings out of 476025
- 477652 string characters out of 5790016
+ 27144 strings out of 476025
+ 477658 string characters out of 5790016
  2081388 words of memory out of 5000000
  46997 multiletter control sequences out of 15000+600000
  524024 words of font info for 81 fonts, out of 8000000 for 9000
@@ -964,10 +964,10 @@ ive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texli
 ve/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texliv
 e/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/
 2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on PS02_SC_answers.pdf (7 pages, 191959 bytes).
+Output written on PS02_SC_answers.pdf (8 pages, 192726 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 190 compressed objects within 2 object streams
- 100 named destinations out of 1000 (max. 500000)
+ 233 PDF objects out of 1000 (max. 8388607)
+ 193 compressed objects within 2 object streams
+ 101 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
