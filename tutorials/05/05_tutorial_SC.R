@@ -5,7 +5,7 @@
 getwd()
 
 # Set working directory 
-setwd("/Users/hannahfrank/StatsI_Fall2023_prep")
+setwd("/Users/sarabcidf/Desktop/ASDS/Statistics/StatsI_Fall2023/tutorials/05")
 getwd()
 
 # Agenda 
@@ -81,12 +81,12 @@ names(df)[8] <- "democracy"
 View(df)
 
 # Save df
-write.csv(df, "datasets/df_income_mortality.csv")
+write.csv(df, "df_income_mortality.csv")
 
 # (b.) Data wrangling -------
 
 # Load df
-df <- read_csv("datasets/df_income_mortality.csv")
+df <- read_csv("df_income_mortality.csv")
 View(df)
 
 # Get unique countries in df
@@ -226,7 +226,7 @@ scatter <- ggplot(data = df_na,
   theme_classic() + # Change theme
   theme(legend.box.background = element_rect(size = 0.1), # Change background
         legend.position = c(0.85, 0.85)) # Change position of legend
-ggsave(scatter, file = "tutorials/05/scatter.png")
+ggsave(scatter, file = "scatter.png")
 scatter
 
 # (d.) Regression analysis -----

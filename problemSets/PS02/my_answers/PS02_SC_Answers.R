@@ -111,8 +111,11 @@ summary(data) # We re interested in water specifically
 # y: no. of new or repaired water facilities
 # y ~ x 
 
-# H0: the reservation policy has no effect on the no. of new/repaired water facilities ...
-# Ha: the policy does have an effect on the no. of new/repaired facilities ...
+# My hypotheses:
+
+# H0 (for b): the reservation policy has no effect on the no. of new/repaired water facilities ...
+# Ha (for b): the policy does have an effect on the no. of new/repaired facilities ...
+# Also hypothesize for a.
 
 # ** b) ** 
 

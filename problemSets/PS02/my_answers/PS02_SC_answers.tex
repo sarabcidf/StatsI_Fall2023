@@ -166,32 +166,39 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	\item [(a)] State a null and alternative (two-tailed) hypothesis. 
 	\vspace{.5cm}
 	
-	Our model would be: 
-	\begin{equation}
-		y = a + bx
-	\end{equation}
-	Where: 
+	Our model would be of the type:  
+		$y = a + bx$ , where: 
 		\begin{itemize}
 		\item x: policy (reserved / not reserved; I assume that 1 means reserved for women, 0 means not)
 		\item y:  no. of new or repaired water facilities 
 	\end{itemize}
-	And so our hypotheses would be (we can hypothesize about effects because the presence of the policy in villages is random): 
+	And so the relevant hypotheses for our intercept and slope would be (we can hypothesize about effects in particular because the presence of the policy in villages is random): 
 	\begin{itemize}
-		\item H0: The reservation policy has no effect on the no. of new/repaired water facilities.
-		\item Ha: The policy does have an effect on the no. of new/repaired water facilities. 
+		\item H0: $a = 0$ (The no. of new/repaired water facilities when the reservation policy is not in place is zero). 
+		\item Ha: $a \neq 0$ (The no. of new/repaired water facilities when the reservation policy is not in place is NOT zero.) 
+		\item H0: $b = 0$ (The reservation policy has no effect on the no. of new/repaired water facilities). 
+		\item Ha: $b \neq 0$ (The policy does have an effect on the no. of new/repaired water facilities.) 
 	\end{itemize}
 		
 	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).
 	\vspace{.5cm}
 	
-	\noindent \textbf {Code to run the regression:}
-	\lstinputlisting[language=R, linerange={119-130}]{PS02_SC_Answers.R}
+	I tests both sets of hypotheses by hand, estimating the intercept and the slope, and then confirm. 
 	
+	\noindent \textbf {Code to run the regression:}
+	\lstinputlisting[language=R, linerange={122-133}]{PS02_SC_Answers.R}
+	
+	\newpage
 	\item [(c)] Interpret the coefficient estimate for reservation policy. 
 	\vspace{.5cm}
 	
-	The coefficient estimate for reservation (b) is 9.25. It is positive, and it is quite sizable. This estimate indicates that, on average, places where the reservation policy is in place have 9.25 more new or repaired water facilities, as compared to villages where the policy is not in place. Therefore, the reservation policy does have an effect over the no. of new/repaired water facilities, and having government positions reserved for women does lead, in this case, to the implementation of more policies that women support. 
-	Part of the reason why the coefficient is so sizeable is that our input variable is a dummy. This is also why we interpret the coefficient in the above way, instead of the "a one unit change in x causes an increase of b units in y" approach, although they are equivalent, and our "one unit increase in x" is simply passing from no reservation policy to a reservation policy. 
+	The coefficient estimate for reservation (b) is 9.25. It is positive, and it is quite sizable. This estimate indicates that, on average, places where the reservation policy is in place build/repair 9.25 more water facilities, as compared to villages where the policy is not in place. 
+	
+	Therefore, the reservation policy does have an effect over the no. of new/repaired water facilities, and having government positions reserved for women does lead, in this case, to the implementation of more policies that women support. 
+	
+	Part of the reason why the coefficient is so sizable is that our input variable is a dummy. This is also why we interpret the coefficient in the above way, instead of the 'a one unit change in x causes an increase of b units in y' approach, although they are equivalent, and our 'one unit increase in x' is simply passing from no reservation policy to a reservation policy. 
+	
+	Additionally, our intercept estimate is 14.73. What this means is that, in places where the reservation policy is not in place, 14.73 water facilities are built/repaired, on average. The intercept also helps us make sense of the size of our slope: since our slope is more than half of our intercept, this means that places where the policy is in place build/repair a little over 50\% more water facilities, so we could say that the effect of the policy over the no. of new/repaired facilities is quite large. 
 	
 \end{enumerate}
 
