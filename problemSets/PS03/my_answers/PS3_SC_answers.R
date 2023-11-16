@@ -24,7 +24,8 @@ pkgTest <- function(pkg){
 }
 
 # loading -> checking, installing and loading several packages in one line 
-lapply(c("stringr","tidyverse"), pkgTest)
+# I will be using stringr, tidyverse and also stargazer to report regression results in latex
+lapply(c("stringr","tidyverse","stargazer"), pkgTest)
 
 #### Reading and exploring data #### 
 
@@ -45,7 +46,7 @@ summary(model1)
 # Saving residuals separately: 
 resid1 <- model1$residuals
 
-# And creating the scatterplot using ggplot:
+# And creating the scatterplot using ggplot (geom_smooth does do the same as abline):
 plot1 <- ggplot(inc.sub, aes(x = difflog, y = voteshare)) +
   geom_point(color = "darkslategray4", alpha = 0.7) +  # Editing point color and transparency 
   geom_smooth(method = "lm", se = FALSE, color = "grey") +  # Adding regression line (no SE)
@@ -55,8 +56,26 @@ plot1 <- ggplot(inc.sub, aes(x = difflog, y = voteshare)) +
        title = "Scatterplot with Regression Line, Model 1") + # Fixing labels
   theme(panel.grid = element_blank())  # Getting rid of the grid
 
-#Saving plot: 
-ggsave("plot1.png", plot = plot1, dpi = 300)
+# Saving plot to report in pdf: 
+ggsave("plot1.png", plot = plot1, dpi = 300,
+       height = 3,
+       width = 6)
+
+# Generating code to report regression results in pdf: 
+# I checked this documentation a lot: https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf
+# To make the variable names nice and to get rid of information that stargazer includes by default but we 
+# may not be interested in. 
+
+stargazer(
+  model1,
+  title = "Model 1 Regression Results",
+  type = "latex",
+  dep.var.caption = "VoteSh",
+  dep.var.labels.include = FALSE,
+  covariate.labels = "DiffLog",
+  omit.stat = c("ser","f"),
+  star.cutoffs = c(0.05, 0.01, 0.001)
+)
 
 #### Question 2 ####
 
@@ -73,13 +92,27 @@ plot2 <- ggplot(inc.sub, aes(x = difflog, y = presvote)) +
   geom_smooth(method = "lm", se = FALSE, color = "grey") +  # Adding regression line (no SE)
   theme_minimal() +  # Applying theme 
   labs(x = "Difference in campaign spending between incumbent and challenger", 
-       y = "Presidential candidate vote share (incumbent's party)", 
+       y = "Presidential candidate vote \n share (incumbent's party)", 
        title = "Scatterplot with Regression Line, Model 2") + # Fixing labels
   theme(panel.grid = element_blank())  # Getting rid of the grid
 
 #Saving plot: 
-ggsave("plot2.png", plot = plot2, dpi = 300)
+ggsave("plot2.png", plot = plot2, dpi = 300,
+       height = 3,
+       width = 6)
 
+# Generating code to report regression results in pdf: 
+
+stargazer(
+  model2,
+  title = "Model 2 Regression Results",
+  type = "latex",
+  dep.var.caption = "PresVote",
+  dep.var.labels.include = FALSE,
+  covariate.labels = "DiffLog",
+  omit.stat = c("ser","f"),
+  star.cutoffs = c(0.05, 0.01, 0.001)
+)
 
 #### Question 3 ####
 
@@ -98,7 +131,22 @@ plot3 <- ggplot(inc.sub, aes(x = presvote, y = voteshare)) +
   theme(panel.grid = element_blank())  # Getting rid of the grid
 
 #Saving plot: 
-ggsave("plot3.png", plot = plot3, dpi = 300)
+ggsave("plot3.png", plot = plot3, dpi = 300,
+       height = 3,
+       width = 6)
+
+# Generating code to report regression results in pdf: 
+
+stargazer(
+  model3,
+  title = "Model 3 Regression Results",
+  type = "latex",
+  dep.var.caption = "VoteSh",
+  dep.var.labels.include = FALSE,
+  covariate.labels = "PresVote",
+  omit.stat = c("ser","f"),
+  star.cutoffs = c(0.05, 0.01, 0.001)
+)
 
 #### Question 4 #### 
 
@@ -112,18 +160,46 @@ plot4 <- ggplot(inc.sub, aes(x = resid2, y = resid1)) +
   geom_smooth(method = "lm", se = FALSE, color = "grey") +  # Adding regression line (no SE)
   theme_minimal() +  # Applying theme 
   labs(x = "Residuals from Q2: Variation in PresVote not explained by difference in spending", 
-       y = "Residuals from Q1: Variation in VoteShare not explained by difference in spending", 
+       y = "Residuals from Q1: Variation in VoteShare \n not explained by difference in spending", 
        title = "Scatterplot with Regression Line, Model 4") + # Fixing labels
   theme(panel.grid = element_blank())  # Getting rid of the grid
 
 #Saving plot: 
-ggsave("plot4.png", plot = plot4, dpi = 300)
+ggsave("plot4.png", plot = plot4, dpi = 300,
+       height = 3,
+       width = 6)
+
+# Generating code to report regression results in pdf: 
+
+stargazer(
+  model4,
+  title = "Model 4 Regression Results",
+  type = "latex",
+  dep.var.caption = "Model1Res",
+  dep.var.labels.include = FALSE,
+  covariate.labels = "Model2Res",
+  omit.stat = c("ser","f"),
+  star.cutoffs = c(0.05, 0.01, 0.001)
+)
 
 #### Question 5 #### 
 
 # Creating and exploring model:  
 model5 <- lm(voteshare~difflog+presvote, inc.sub)
 summary(model5)
+
+# Generating code to report regression results in pdf: 
+
+stargazer(
+  model5,
+  title = "Model 5 Regression Results",
+  type = "latex",
+  dep.var.caption = "VoteSh",
+  dep.var.labels.include = FALSE,
+  covariate.labels = c("DiffLog","PresVote"),
+  omit.stat = c("ser","f"),
+  star.cutoffs = c(0.05, 0.01, 0.001)
+)
 
 # Comparing Model 4 and Model 5:
 # I think the residuals between the two models are going to be the same
@@ -133,15 +209,17 @@ summary(model5)
 resid4 <- model4$residuals
 resid5 <- model5$residuals
 
-# I see here I can use the function identical (https://statisticsglobe.com/compare-vectors-and-find-differences-in-r)
+# I see in statisticsglobe (link provided below in R script) that I use identical() 
+# to compare
 identical(resid4,resid5) # Not identical 
 
 # But perhaps they are not identical to the very last decimal point,
 # however if I give a certain tolerance level (for example 0.001)
 # the residuals will be the same.
-# Here I see how to create the following function to compare each element
+# I see in stackoverflow (link provided below in R script) 
+# how to create the following function to compare each element
 # in my residuals vectors, allowing for a small difference between them 
-# (https://stackoverflow.com/questions/49237304/compare-two-vectors-of-numbers-based-on-threshold-of-tolerance-±-of-0-5)
+
 # And I just have to sum the output
 sum(mapply(function(element1, element2) abs(element1 - element2) <= 0.001, 
            resid4, resid5))
@@ -149,5 +227,10 @@ sum(mapply(function(element1, element2) abs(element1 - element2) <= 0.001,
 # Double checking residuals length -> this means all residuals in M4 and M5 are the same
 length(resid4) 
 length(resid5)
+
+# Statisticsglobe link: 
+# https://statisticsglobe.com/compare-vectors-and-find-differences-in-r
+# Stackoverflow link: 
+# https://stackoverflow.com/questions/49237304/compare-two-vectors-of-numbers-based-on-threshold-of-tolerance-±-of-0-5
 
 
