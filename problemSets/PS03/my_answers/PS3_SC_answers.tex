@@ -97,7 +97,7 @@
 	\begin{table}[!htbp] \centering   \caption{Model 1 Regression Results}   \label{} \begin{tabular}{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex]  & \multicolumn{1}{c}{VoteSh} \\ \cline{2-2} \hline \\[-1.8ex]  DiffLog & 0.042$^{***}$ \\   & (0.001) \\   & \\  Constant & 0.579$^{***}$ \\   & (0.002) \\   & \\ \hline \\[-1.8ex] Observations & 3,193 \\ R$^{2}$ & 0.367 \\ Adjusted R$^{2}$ & 0.367 \\ \hline \hline \\[-1.8ex] \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ \end{tabular} \end{table} 
 		
 		Brief interpretation: 
-		The results show that a one-unit increase in difflog is associated, on average, with a 0.042 unit increase in voteshare (this is 4.2\% higher). Since p < 0.001, we can reject the null hypothesis that there is no association between difflog and voteshare, or that the slope of difflog in this model is zero. 
+		The results show that a one-unit increase in difflog is associated, on average, with a 0.042 unit increase in voteshare (this is 4.2\% higher). Since p $<$ 0.001, we can reject the null hypothesis that there is no association between difflog and voteshare, or that the slope of difflog in this model is zero. 
 		
 		\item Make a scatterplot of the two variables and add the regression line. 	\vspace{0.25cm}
 		
@@ -125,7 +125,7 @@
 			\setlength{\belowdisplayskip}{6pt} 
 		
 		\begin{flalign*}
-			&\text{VoteSh} = \beta_0 + \beta_1 \cdot \text{DiffLog}  &
+			&\text{VoteSh} = 0.579 + 0.042 \cdot \text{DiffLog}  &
 		\end{flalign*}
 		
 			where:  $VoteSh$: Incumbent's vote share , and $DiffLog$: Logarithm of the difference between incumbent and challenger's spending
@@ -148,7 +148,7 @@
 		\begin{table}[!htbp] \centering   \caption{Model 2 Regression Results}   \label{} \begin{tabular}{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex]  & \multicolumn{1}{c}{PresVote} \\ \cline{2-2} \hline \\[-1.8ex]  DiffLog & 0.024$^{***}$ \\   & (0.001) \\   & \\  Constant & 0.508$^{***}$ \\   & (0.003) \\   & \\ \hline \\[-1.8ex] Observations & 3,193 \\ R$^{2}$ & 0.088 \\ Adjusted R$^{2}$ & 0.088 \\ \hline \hline \\[-1.8ex] \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ \end{tabular} \end{table} 
 		
 		Brief interpretation: 
-		The results show that a one-unit increase in difflog is associated, on average, with a 0.024 unit increase in presvote (this is 2.4\% higher). Since p < 0.001, we can reject the null hypothesis that there is no association between difflog and presvote, or that the slope of difflog in this model is zero. 
+		The results show that a one-unit increase in difflog is associated, on average, with a 0.024 unit increase in presvote (this is 2.4\% higher). Since p $<$ 0.001, we can reject the null hypothesis that there is no association between difflog and presvote, or that the slope of difflog in this model is zero. 
 		
 		\item Make a scatterplot of the two variables and add the regression line. \vspace{0.25cm}
 		
@@ -176,7 +176,7 @@
 			\setlength{\belowdisplayskip}{6pt} 
 			
 			\begin{flalign*}
-				&\text{PresVote} = \beta_0 + \beta_1 \cdot \text{DiffLog}  &
+				&\text{PresVote} = 0.508 + 0.024 \cdot \text{DiffLog}  &
 			\end{flalign*}
 			
 			where $PresSh$: Vote share of the presidential candidate of the incumbent's party, and $DiffLog$: Logarithm of the difference between incumbent and challenger's spending
@@ -200,7 +200,7 @@
 		\begin{table}[!htbp] \centering   \caption{Model 3 Regression Results}   \label{} \begin{tabular}{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex]  & \multicolumn{1}{c}{VoteSh} \\ \cline{2-2} \hline \\[-1.8ex]  PresVote & 0.388$^{***}$ \\   & (0.013) \\   & \\  Constant & 0.441$^{***}$ \\   & (0.008) \\   & \\ \hline \\[-1.8ex] Observations & 3,193 \\ R$^{2}$ & 0.206 \\ Adjusted R$^{2}$ & 0.206 \\ \hline \hline \\[-1.8ex] \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ \end{tabular} \end{table} 
 		
 		Brief interpretation: 
-		The results show that a one-unit increase in presvote is associated, on average, with a 0.388 unit increase in voteshare (this is 38.8\% higher). The coefficient is very large in magnitude. Since p < 0.001, we can reject the null hypothesis that there is no association between presvote and voteshare, or that the slope of presvote in this model is zero. 
+		The results show that a one-unit increase in presvote is associated, on average, with a 0.388 unit increase in voteshare (this is 38.8\% higher). The coefficient is very large in magnitude. Since p $<$ 0.001, we can reject the null hypothesis that there is no association between presvote and voteshare, or that the slope of presvote in this model is zero. 
 			
 		\item Make a scatterplot of the two variables and add the regression line. \vspace{.25cm}
 		
@@ -223,7 +223,7 @@
 			\setlength{\belowdisplayskip}{6pt} 
 			
 			\begin{flalign*}
-				&\text{VoteSh} = \beta_0 + \beta_1 \cdot \text{PresVote}  &
+				&\text{VoteSh} = 0.441 + 0.388 \cdot \text{PresVote}  &
 			\end{flalign*}
 			
 			where: 
@@ -252,7 +252,7 @@
 		\begin{table}[!htbp] \centering   \caption{Model 4 Regression Results}   \label{} \begin{tabular}{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex]  & \multicolumn{1}{c}{Model1Res} \\ \cline{2-2} \hline \\[-1.8ex]  Model2Res & 0.257$^{***}$ \\   & (0.012) \\   & \\  Constant & $-$0.000 \\   & (0.001) \\   & \\ \hline \\[-1.8ex] Observations & 3,193 \\ R$^{2}$ & 0.130 \\ Adjusted R$^{2}$ & 0.130 \\ \hline \hline \\[-1.8ex] \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ \end{tabular} \end{table} 
 		
 		Brief interpretation: 
-		The results show that a one-unit increase in Model2Res is associated, on average, with a 0.257 unit increase in Model1Res. Since p < 0.001, we can reject the null hypothesis that there is no association between Model2Res and Model1Res, or that the slope of Model2Res in this model is zero. 
+		The results show that a one-unit increase in Model2Res is associated, on average, with a 0.257 unit increase in Model1Res. Since p $<$ 0.001, we can reject the null hypothesis that there is no association between Model2Res and Model1Res, or that the slope of Model2Res in this model is zero. 
 		
 		\item Make a scatterplot of the two residuals and add the regression line. 	\vspace{.25cm}
 		
@@ -275,7 +275,7 @@
 			\setlength{\belowdisplayskip}{6pt} 
 			
 			\begin{flalign*}
-				&\text{Resid1} = \beta_0 + \beta_1 \cdot \text{Resid2}  &
+				&\text{Resid1} = 0 + 0.257 \cdot \text{Resid2}  &
 			\end{flalign*}
 			
 			where: 
@@ -296,15 +296,15 @@
 		\item Run a regression where the outcome variable is the incumbent's \texttt{voteshare} and the explanatory variables are \texttt{difflog} and \texttt{presvote}.	\vspace{.25cm}
 		
 		Code for the regression: 
-		\lstinputlisting[language=R, linerange={92-93}]{PS3_SC_answers.R}
+		\lstinputlisting[language=R, linerange={187-189}]{PS3_SC_answers.R}
 		
 		Reporting regression results: 
 		% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com% Date and time: Thu, Nov 16, 2023 - 12:36:14
 		\begin{table}[!htbp] \centering   \caption{Model 5 Regression Results}   \label{} \begin{tabular}{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex]  & \multicolumn{1}{c}{VoteSh} \\ \cline{2-2} \hline \\[-1.8ex]  DiffLog & 0.036$^{***}$ \\   & (0.001) \\   & \\  PresVote & 0.257$^{***}$ \\   & (0.012) \\   & \\  Constant & 0.449$^{***}$ \\   & (0.006) \\   & \\ \hline \\[-1.8ex] Observations & 3,193 \\ R$^{2}$ & 0.450 \\ Adjusted R$^{2}$ & 0.449 \\ \hline \hline \\[-1.8ex] \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ \end{tabular} \end{table} 
 		
 		Brief interpretation: 
-		The results show that a one-unit increase in difflog is associated, on average and holding presvote constant, with a 0.036 unit increase in voteshare. Since p < 0.001, we can reject the null hypothesis that there is no association between difflog and voteshare, or that the slope of difflog in this model is zero. 
-		For presvote, the results show that a one-unit increase in presvote is associated, on average and holding difflog constant, with a 0.257 unit increase in voteshare. Since p < 0.001, we can reject the null hypothesis that there is no association between presvote and voteshare, or that the slope of difflog in this model is zero. 
+		The results show that a one-unit increase in difflog is associated, on average and holding presvote constant, with a 0.036 unit increase in voteshare. Since p $<$ 0.001, we can reject the null hypothesis that there is no association between difflog and voteshare, or that the slope of difflog in this model is zero. 
+		For presvote, the results show that a one-unit increase in presvote is associated, on average and holding difflog constant, with a 0.257 unit increase in voteshare. Since p $<$ 0.001, we can reject the null hypothesis that there is no association between presvote and voteshare, or that the slope of difflog in this model is zero. 
 		In comparison with Model 1 and Model 2, where we tested the association of difflog and voteshare, and then presvote and voteshare separately, the coefficients in this last model are slightly smaller. This is explained by the fact that presvote and difflog share some variability among each other, which we also proved in Model 3. 
 		
 		\item Write the prediction equation. 
@@ -313,7 +313,7 @@
 			\setlength{\belowdisplayskip}{6pt} 
 			
 			\begin{flalign*}
-				&\text{VoteSh} = \beta_0 + \beta_1 \cdot \text{DiffLog} + \beta_2 \cdot \text{PresVote} &
+				&\text{VoteSh} = 0.449 + 0.036 \cdot \text{DiffLog} + 0.257 \cdot \text{PresVote} &
 			\end{flalign*}
 			
 			where: 
@@ -330,7 +330,15 @@
 		Code to compare residuals: 
 		\lstinputlisting[language=R, linerange={204-229}]{PS3_SC_answers.R}
 		
-		The residuals in Models 4 and 5 are the same, because since our outcome in Model 4 is the unexplained variation in voteshare after including difflog in our regression, and since our explanatory variable in Model 4 is the unexplained variation in presvote after including difflog in our regression, the residuals of this model are exactly the same thing as the residuals in Model 5, where we run a multivariate regression of voteshare over difflog and presvote. That is, the residuals in both cases consist of the unexplained variation in voteshare after accounting for both difflog and presvote. 
+		First, the coefficient for presvote in Model 5 is the same as that of Resid2 in Model 4. This is because both coefficients describe the relationship between the unexplained variation in presvote and the unexplained variation in voteshare after accounting for difflog. 
+		
+		In Model 4, the coefficient of Resid2 describes the relationship between the unexplained variation in presvote after accounting for difflog (Resid2) and the unexplained variation in voteshare after accounting for difflog (Resid1) because we are running a regression of Resid1 over Resid2. 
+	
+		In Model 5, the coefficient of presvote captures essentially the same thing: how presvote varies with share, after accounting for difflog, which is the other independent variable in the multivariate model. 
+		
+		Also, the residuals in Models 4 and 5 are the same, because since our outcome in Model 4 is the unexplained variation in voteshare after including difflog in our regression, and since our explanatory variable in Model 4 is the unexplained variation in presvote after including difflog in our regression, the residuals of this model are exactly the same thing as the residuals in Model 5, where we run a multivariate regression of voteshare over difflog and presvote. 
+	
+		That is, the residuals in both cases consist of the unexplained variation in voteshare after accounting for both difflog and presvote. 
 		
 	\end{enumerate}
 
