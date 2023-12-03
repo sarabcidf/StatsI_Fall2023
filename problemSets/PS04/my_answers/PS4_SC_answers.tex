@@ -239,6 +239,7 @@ a precinct that was adjacent to a precinct in the treatment group (since people 
 	
 	For this, we need to repeat the same process as above, but this time for the coefficient of the adjacent variable, which we can denote as $\beta_2$. Our null hypothesis in this case is that $\beta_2$ is equal to zero. 
 	
+	\newpage
 	\lstinputlisting[language=R, linerange={107-118}]{PS04_SC_answers.R} 	
 	
 	And we see that the associated p-value is 0.0016, which is smaller than 0.05, so we can reject the null hypothesis that $\beta_2 = 0 $ at the 95\% confidence level. In other words, we can reject the null hypothesis that putting up signs, even in adjacent precincts, is not associated to a larger vote share for Cuccinelli in the precinct adjacent to where the sign was placed, or that the slope of the regression line between the two variables (being adjacent to a precinct with a sign, and vote share) is zero. Moreover, we may interpret the point estimate of 0.042 as follows: the vote share for Cuccinelli would be, on average, 0.042 points higher in precincts that are adjacent to a precinct where a sign was put, as compared to those that are not. 
